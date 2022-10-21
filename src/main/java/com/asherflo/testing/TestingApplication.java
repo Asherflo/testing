@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -23,8 +24,8 @@ public class TestingApplication {
     PasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
     }
-
-    CommandLineRunner run(UserService userService){
+@Bean
+CommandLineRunner run(UserService userService){
         return  args -> {
             userService.saveRole(new Role(null,"ROLE_USER"));
             userService.saveRole(new Role(null,"ROLE_MANAGER"));
